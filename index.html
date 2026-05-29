@@ -1,0 +1,1370 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>THE DPR — DJ & Music Producer</title>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --bg: #0a0a0a;
+      --surface: #121212;
+      --surface-2: #1a1a1a;
+      --border: rgba(255,255,255,0.08);
+      --border-hover: rgba(255,255,255,0.18);
+      --gold: #c8a84b;
+      --gold-light: #e2c472;
+      --gold-dim: rgba(200,168,75,0.15);
+      --white: #f5f2ed;
+      --text: #b8b4ac;
+      --muted: #6b6762;
+      --mono: 'Space Mono', monospace;
+      --sans: 'DM Sans', sans-serif;
+      --display: 'Bebas Neue', sans-serif;
+    }
+
+    html { scroll-behavior: smooth; }
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--sans);
+      font-size: 16px;
+      line-height: 1.7;
+      overflow-x: hidden;
+    }
+
+    /* ─── TYPOGRAPHY ─────────────────────────────── */
+    h1, h2, h3 { color: var(--white); }
+    p { color: var(--text); }
+    .label {
+      font-family: var(--mono);
+      font-size: 0.62rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--gold);
+    }
+
+    /* ─── NAV ────────────────────────────────────── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0;
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 1.25rem 5rem;
+      background: rgba(10,10,10,0.92);
+      border-bottom: 1px solid var(--border);
+      backdrop-filter: blur(12px);
+      z-index: 100;
+    }
+    .nav-brand {
+      font-family: var(--display);
+      font-size: 1.4rem;
+      letter-spacing: 0.15em;
+      color: var(--white);
+    }
+    .nav-brand span { color: var(--gold); }
+    nav ul { display: flex; gap: 2.5rem; list-style: none; }
+    nav a {
+      font-family: var(--mono);
+      font-size: 0.65rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      text-decoration: none;
+      color: var(--muted);
+      transition: color 0.25s;
+    }
+    nav a:hover { color: var(--white); }
+    .nav-cta {
+      padding: 0.55rem 1.4rem;
+      border: 1px solid var(--gold);
+      color: var(--gold) !important;
+      border-radius: 2px;
+      transition: background 0.25s, color 0.25s !important;
+    }
+    .nav-cta:hover { background: var(--gold) !important; color: var(--bg) !important; }
+
+    /* ─── HERO ───────────────────────────────────── */
+    .hero {
+      min-height: 100vh;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      align-items: center;
+      padding: 0 5rem;
+      gap: 4rem;
+      padding-top: 5rem;
+      position: relative;
+    }
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: 0; right: 0;
+      width: 55%;
+      height: 100%;
+      background: radial-gradient(ellipse at 80% 40%, rgba(200,168,75,0.04) 0%, transparent 60%);
+      pointer-events: none;
+    }
+    .hero-left { position: relative; z-index: 1; }
+    .hero-eyebrow {
+      display: flex; align-items: center; gap: 1rem;
+      margin-bottom: 2rem;
+      opacity: 0; animation: fadeIn 0.7s 0.2s forwards;
+    }
+    .hero-eyebrow::before {
+      content: ''; display: block;
+      width: 32px; height: 1px;
+      background: var(--gold);
+    }
+    .hero h1 {
+      font-family: var(--display);
+      font-size: clamp(5rem, 10vw, 9rem);
+      line-height: 0.9;
+      letter-spacing: 0.02em;
+      color: var(--white);
+      opacity: 0; animation: fadeIn 0.8s 0.35s forwards;
+    }
+    .hero h1 .stroke {
+      -webkit-text-stroke: 1px rgba(200,168,75,0.6);
+      color: transparent;
+    }
+    .hero-desc {
+      margin-top: 2rem;
+      font-size: 1rem;
+      font-weight: 300;
+      color: var(--text);
+      max-width: 440px;
+      line-height: 1.75;
+      opacity: 0; animation: fadeIn 0.8s 0.5s forwards;
+    }
+    .hero-actions {
+      display: flex; gap: 1rem; align-items: center;
+      margin-top: 2.5rem;
+      opacity: 0; animation: fadeIn 0.8s 0.65s forwards;
+    }
+    .btn {
+      display: inline-flex; align-items: center;
+      font-family: var(--mono);
+      font-size: 0.65rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      text-decoration: none;
+      border-radius: 2px;
+      transition: all 0.25s;
+      cursor: pointer;
+    }
+    .btn-gold {
+      padding: 0.8rem 2rem;
+      background: var(--gold);
+      color: var(--bg);
+      font-weight: 700;
+      border: 1px solid var(--gold);
+    }
+    .btn-gold:hover { background: var(--gold-light); border-color: var(--gold-light); }
+    .btn-outline {
+      padding: 0.8rem 2rem;
+      background: transparent;
+      color: var(--text);
+      border: 1px solid var(--border-hover);
+    }
+    .btn-outline:hover { border-color: var(--white); color: var(--white); }
+
+    .hero-right {
+      position: relative; z-index: 1;
+      opacity: 0; animation: fadeIn 1s 0.5s forwards;
+    }
+    .hero-img-wrap {
+      position: relative;
+      aspect-ratio: 3/4;
+      overflow: hidden;
+      max-height: 75vh;
+    }
+    .hero-img-wrap img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      filter: grayscale(15%) brightness(0.88);
+      transition: filter 0.5s;
+    }
+    .hero-img-wrap:hover img { filter: grayscale(0%) brightness(0.95); }
+    .hero-img-overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(to top, rgba(10,10,10,0.5) 0%, transparent 50%);
+    }
+    .hero-img-tag {
+      position: absolute;
+      bottom: 1.5rem; left: 1.5rem;
+      background: rgba(10,10,10,0.85);
+      border: 1px solid var(--border-hover);
+      padding: 0.8rem 1.2rem;
+      display: flex; flex-direction: column; gap: 0.2rem;
+    }
+    .hero-img-tag .t1 {
+      font-family: var(--display);
+      font-size: 1.1rem;
+      letter-spacing: 0.12em;
+      color: var(--white);
+    }
+    .hero-img-tag .t2 {
+      font-family: var(--mono);
+      font-size: 0.55rem;
+      letter-spacing: 0.15em;
+      color: var(--gold);
+    }
+    .hero-stats {
+      position: absolute;
+      top: 2rem; right: -1.5rem;
+      display: flex; flex-direction: column; gap: 0.5rem;
+    }
+    .hero-stat-item {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      padding: 1rem 1.4rem;
+      text-align: center;
+      min-width: 100px;
+    }
+    .hero-stat-num {
+      font-family: var(--display);
+      font-size: 1.8rem;
+      color: var(--gold);
+      line-height: 1;
+    }
+    .hero-stat-lbl {
+      font-family: var(--mono);
+      font-size: 0.5rem;
+      letter-spacing: 0.15em;
+      color: var(--muted);
+      margin-top: 0.3rem;
+    }
+
+    /* ─── TICKER ─────────────────────────────────── */
+    .ticker {
+      overflow: hidden;
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      padding: 0.9rem 0;
+      background: var(--surface);
+    }
+    .ticker-track {
+      display: flex;
+      white-space: nowrap;
+      animation: ticker 28s linear infinite;
+    }
+    .ticker-item {
+      font-family: var(--mono);
+      font-size: 0.65rem;
+      letter-spacing: 0.2em;
+      color: var(--muted);
+      padding: 0 2.5rem;
+      text-transform: uppercase;
+    }
+    .ticker-item span { color: var(--gold); }
+
+    /* ─── SECTION COMMON ─────────────────────────── */
+    section { position: relative; }
+    .container { max-width: 1160px; margin: 0 auto; padding: 0 5rem; }
+    .section-pad { padding: 7rem 0; }
+    .section-head {
+      display: flex; align-items: center; gap: 1.5rem;
+      margin-bottom: 4rem;
+    }
+    .section-num {
+      font-family: var(--mono);
+      font-size: 0.6rem;
+      letter-spacing: 0.18em;
+      color: var(--gold);
+    }
+    .section-title {
+      font-family: var(--display);
+      font-size: clamp(2rem, 4vw, 3.2rem);
+      color: var(--white);
+      letter-spacing: 0.05em;
+    }
+    .section-rule { flex: 1; height: 1px; background: var(--border); }
+
+    /* ─── ABOUT ──────────────────────────────────── */
+    .about { background: var(--bg); }
+    .about-grid {
+      display: grid;
+      grid-template-columns: 420px 1fr;
+      gap: 5rem;
+      align-items: center;
+    }
+    .about-img {
+      position: relative;
+      aspect-ratio: 4/5;
+      overflow: hidden;
+    }
+    .about-img img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      filter: grayscale(20%) brightness(0.85);
+      transition: filter 0.4s;
+    }
+    .about-img:hover img { filter: grayscale(0%) brightness(0.95); }
+    .about-img-border {
+      position: absolute; inset: 0;
+      border: 1px solid var(--border);
+      pointer-events: none;
+    }
+    .about-img-accent {
+      position: absolute;
+      bottom: 0; right: 0;
+      background: var(--gold);
+      color: var(--bg);
+      font-family: var(--display);
+      font-size: 0.9rem;
+      letter-spacing: 0.15em;
+      padding: 0.7rem 1.2rem;
+    }
+    .about-content h3 {
+      font-family: var(--display);
+      font-size: 2.2rem;
+      letter-spacing: 0.05em;
+      color: var(--white);
+      margin-bottom: 1.5rem;
+    }
+    .about-content p {
+      font-size: 0.97rem;
+      font-weight: 300;
+      color: var(--text);
+      line-height: 1.8;
+      margin-bottom: 1.2rem;
+    }
+    .about-tags {
+      display: flex; flex-wrap: wrap; gap: 0.6rem;
+      margin-bottom: 2.5rem;
+    }
+    .tag {
+      font-family: var(--mono);
+      font-size: 0.58rem;
+      letter-spacing: 0.15em;
+      color: var(--muted);
+      border: 1px solid var(--border);
+      padding: 0.4rem 0.9rem;
+      border-radius: 2px;
+      text-transform: uppercase;
+    }
+    .about-stats {
+      display: grid; grid-template-columns: repeat(3, 1fr);
+      gap: 0;
+      border-top: 1px solid var(--border);
+      padding-top: 2rem;
+      margin-top: 2rem;
+    }
+    .about-stat { padding-right: 2rem; }
+    .about-stat + .about-stat { padding-left: 2rem; border-left: 1px solid var(--border); }
+    .stat-n {
+      font-family: var(--display);
+      font-size: 2.5rem;
+      color: var(--gold);
+      line-height: 1;
+    }
+    .stat-l {
+      font-family: var(--mono);
+      font-size: 0.55rem;
+      letter-spacing: 0.15em;
+      color: var(--muted);
+      margin-top: 0.4rem;
+      text-transform: uppercase;
+    }
+
+    /* ─── MIXES ──────────────────────────────────── */
+    .mixes { background: var(--surface); }
+    .mixes-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1px;
+      background: var(--border);
+      border: 1px solid var(--border);
+    }
+    .mix-card {
+      background: var(--surface);
+      padding: 2rem 2rem 2rem;
+      position: relative;
+      cursor: pointer;
+      transition: background 0.25s;
+      display: flex; flex-direction: column; gap: 0.3rem;
+    }
+    .mix-card:hover, .mix-card.playing { background: var(--surface-2); }
+    .mix-card-top {
+      display: flex; justify-content: space-between; align-items: flex-start;
+      margin-bottom: 1rem;
+    }
+    .mix-n {
+      font-family: var(--mono);
+      font-size: 0.55rem;
+      letter-spacing: 0.18em;
+      color: var(--muted);
+    }
+    .mix-play-btn {
+      width: 36px; height: 36px;
+      border: 1px solid var(--border);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      transition: border-color 0.25s, background 0.25s;
+      flex-shrink: 0;
+    }
+    .mix-card:hover .mix-play-btn, .mix-card.playing .mix-play-btn {
+      border-color: var(--gold);
+      background: var(--gold-dim);
+    }
+    .mix-play-btn svg { fill: var(--muted); width: 12px; transition: fill 0.25s; }
+    .mix-card:hover .mix-play-btn svg, .mix-card.playing .mix-play-btn svg { fill: var(--gold); }
+    .mix-title {
+      font-family: var(--display);
+      font-size: 1.35rem;
+      letter-spacing: 0.05em;
+      color: var(--white);
+      line-height: 1.15;
+    }
+    .mix-meta {
+      font-size: 0.82rem;
+      color: var(--muted);
+      font-weight: 300;
+    }
+    .mix-genre {
+      margin-top: 1rem;
+      display: inline-block;
+      font-family: var(--mono);
+      font-size: 0.54rem;
+      letter-spacing: 0.15em;
+      color: var(--muted);
+      border: 1px solid var(--border);
+      padding: 0.3rem 0.7rem;
+      text-transform: uppercase;
+      align-self: flex-start;
+      transition: color 0.25s, border-color 0.25s;
+    }
+    .mix-card:hover .mix-genre, .mix-card.playing .mix-genre {
+      color: var(--gold);
+      border-color: rgba(200,168,75,0.3);
+    }
+
+    /* ─── PLAYER ─────────────────────────────────── */
+    .player {
+      position: fixed;
+      bottom: 0; left: 0; right: 0;
+      background: rgba(18,18,18,0.97);
+      border-top: 1px solid var(--border-hover);
+      padding: 0.85rem 5rem;
+      display: flex; align-items: center; gap: 2rem;
+      z-index: 200;
+      transform: translateY(100%);
+      transition: transform 0.4s cubic-bezier(0.16,1,0.3,1);
+      backdrop-filter: blur(16px);
+    }
+    .player.show { transform: translateY(0); }
+    .p-info { min-width: 180px; }
+    .p-label { font-family: var(--mono); font-size: 0.52rem; letter-spacing: 0.2em; color: var(--gold); }
+    .p-title { font-size: 0.9rem; color: var(--white); margin-top: 2px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 200px; }
+    .p-btn {
+      width: 36px; height: 36px; border-radius: 50%;
+      border: 1px solid rgba(200,168,75,0.4);
+      background: none; display: flex; align-items: center; justify-content: center;
+      cursor: pointer; transition: background 0.25s, border-color 0.25s;
+      flex-shrink: 0;
+    }
+    .p-btn:hover { background: var(--gold); border-color: var(--gold); }
+    .p-btn:hover svg { fill: var(--bg); }
+    .p-btn svg { fill: var(--gold); width: 14px; height: 14px; transition: fill 0.25s; }
+    .p-bar-wrap { flex: 1; display: flex; align-items: center; gap: 1rem; }
+    .p-time { font-family: var(--mono); font-size: 0.58rem; color: var(--muted); min-width: 34px; }
+    .p-bar { flex: 1; height: 2px; background: var(--border-hover); cursor: pointer; position: relative; }
+    .p-fill { height: 100%; background: var(--gold); width: 0%; pointer-events: none; }
+    .p-vol { display: flex; align-items: center; gap: 0.6rem; }
+    .p-vol input[type=range] {
+      -webkit-appearance: none; width: 80px; height: 2px;
+      background: var(--border-hover); outline: none; cursor: pointer;
+    }
+    .p-vol input[type=range]::-webkit-slider-thumb {
+      -webkit-appearance: none; width: 12px; height: 12px;
+      border-radius: 50%; background: var(--gold); cursor: pointer;
+    }
+    .p-vol svg { width: 15px; height: 15px; }
+    .p-close {
+      background: none; border: none; cursor: pointer;
+      font-family: var(--mono); font-size: 0.6rem; letter-spacing: 0.15em;
+      color: var(--muted); padding: 0.4rem;
+      transition: color 0.2s;
+    }
+    .p-close:hover { color: var(--white); }
+    .p-wave { display: flex; align-items: center; gap: 2px; }
+    .p-wave span {
+      width: 2px; background: var(--gold); border-radius: 2px;
+      animation: wave 0.7s ease-in-out infinite;
+    }
+    .p-wave span:nth-child(1){height:5px;animation-delay:0s}
+    .p-wave span:nth-child(2){height:12px;animation-delay:0.1s}
+    .p-wave span:nth-child(3){height:7px;animation-delay:0.2s}
+    .p-wave span:nth-child(4){height:15px;animation-delay:0.05s}
+    .p-wave.paused span { animation-play-state: paused; }
+
+    /* ─── SERVICES ───────────────────────────────── */
+    .services { background: var(--bg); }
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1px;
+      background: var(--border);
+      border: 1px solid var(--border);
+    }
+    .service-card {
+      background: var(--bg);
+      padding: 3rem;
+      position: relative;
+      overflow: hidden;
+      transition: background 0.25s;
+    }
+    .service-card:hover { background: var(--surface); }
+    .service-num {
+      font-family: var(--mono);
+      font-size: 0.55rem;
+      letter-spacing: 0.18em;
+      color: var(--gold);
+      margin-bottom: 1.5rem;
+    }
+    .service-name {
+      font-family: var(--display);
+      font-size: 1.7rem;
+      letter-spacing: 0.06em;
+      color: var(--white);
+      margin-bottom: 1rem;
+    }
+    .service-desc {
+      font-size: 0.93rem;
+      font-weight: 300;
+      color: var(--text);
+      line-height: 1.75;
+      max-width: 380px;
+    }
+    .service-arr {
+      position: absolute; top: 3rem; right: 3rem;
+      font-size: 1.2rem; color: var(--border-hover);
+      transition: color 0.25s, transform 0.25s;
+    }
+    .service-card:hover .service-arr { color: var(--gold); transform: translate(3px,-3px); }
+    .service-includes {
+      display: flex; flex-wrap: wrap; gap: 0.5rem;
+      margin-top: 1.5rem;
+    }
+
+    /* ─── GALLERY ────────────────────────────────── */
+    .gallery { background: var(--surface); }
+    .gallery-header {
+      display: flex; justify-content: space-between; align-items: center;
+      margin-bottom: 3rem; flex-wrap: wrap; gap: 1.5rem;
+    }
+    .gallery-header p {
+      font-size: 0.93rem;
+      font-weight: 300;
+      color: var(--text);
+      max-width: 420px;
+      line-height: 1.7;
+    }
+    .ig-btn {
+      display: inline-flex; align-items: center; gap: 0.6rem;
+      font-family: var(--mono);
+      font-size: 0.62rem;
+      letter-spacing: 0.18em;
+      text-decoration: none;
+      color: var(--gold);
+      border: 1px solid rgba(200,168,75,0.3);
+      padding: 0.7rem 1.5rem;
+      transition: background 0.25s, color 0.25s;
+    }
+    .ig-btn:hover { background: var(--gold); color: var(--bg); }
+    .slideshow-wrap {
+      border: 1px solid var(--border);
+      overflow: hidden;
+      position: relative;
+    }
+    .slide-track {
+      display: flex;
+      transition: transform 0.65s cubic-bezier(0.25,0.46,0.45,0.94);
+    }
+    .slide {
+      min-width: 100%;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      min-height: 400px;
+    }
+    .slide-visual {
+      position: relative;
+      overflow: hidden;
+      background: var(--surface-2);
+      display: flex; align-items: center; justify-content: center;
+    }
+    .slide-visual img {
+      position: absolute; inset: 0;
+      width: 100%; height: 100%;
+      object-fit: cover;
+      filter: grayscale(30%) brightness(0.72);
+      transition: filter 0.5s, transform 0.5s;
+    }
+    .slide:hover .slide-visual img { filter: grayscale(5%) brightness(0.85); transform: scale(1.03); }
+    .slide-icon {
+      font-family: var(--display);
+      font-size: 3rem;
+      letter-spacing: 0.1em;
+      color: rgba(200,168,75,0.12);
+      position: relative; z-index: 1;
+      transition: color 0.4s;
+    }
+    .slide:hover .slide-icon { color: rgba(200,168,75,0.25); }
+    .slide-content {
+      padding: 2.5rem 3rem;
+      background: var(--surface);
+      border-left: 1px solid var(--border);
+      display: flex; flex-direction: column; justify-content: center;
+    }
+    .slide-idx {
+      font-family: var(--mono);
+      font-size: 0.54rem;
+      letter-spacing: 0.18em;
+      color: var(--gold);
+      margin-bottom: 1.2rem;
+    }
+    .slide-title {
+      font-family: var(--display);
+      font-size: 1.8rem;
+      letter-spacing: 0.05em;
+      color: var(--white);
+      line-height: 1.1;
+      margin-bottom: 1rem;
+    }
+    .slide-desc {
+      font-size: 0.9rem;
+      font-weight: 300;
+      color: var(--text);
+      line-height: 1.75;
+      margin-bottom: 2rem;
+    }
+    .slide-link {
+      font-family: var(--mono);
+      font-size: 0.58rem;
+      letter-spacing: 0.18em;
+      color: var(--gold);
+      text-decoration: none;
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      border-bottom: 1px solid rgba(200,168,75,0.3);
+      padding-bottom: 3px;
+      align-self: flex-start;
+      transition: border-color 0.25s;
+    }
+    .slide-link:hover { border-color: var(--gold); }
+    .slide-controls {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 1rem 2rem;
+      border-top: 1px solid var(--border);
+      background: rgba(10,10,10,0.6);
+    }
+    .slide-dots { display: flex; gap: 8px; align-items: center; }
+    .slide-dot {
+      width: 6px; height: 6px;
+      border-radius: 50%;
+      background: var(--border-hover);
+      cursor: pointer;
+      transition: background 0.25s, transform 0.25s;
+    }
+    .slide-dot.active { background: var(--gold); transform: scale(1.3); }
+    .slide-nav { display: flex; gap: 0.6rem; }
+    .slide-btn {
+      width: 36px; height: 36px;
+      border: 1px solid var(--border-hover);
+      background: none; color: var(--muted);
+      cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+      transition: border-color 0.25s, color 0.25s;
+    }
+    .slide-btn:hover { border-color: var(--gold); color: var(--gold); }
+    .auto-indicator {
+      font-family: var(--mono);
+      font-size: 0.52rem;
+      letter-spacing: 0.18em;
+      color: var(--muted);
+      display: flex; align-items: center; gap: 0.5rem;
+    }
+    .auto-dot {
+      width: 5px; height: 5px;
+      border-radius: 50%;
+      background: var(--gold);
+      animation: pulse 2s ease-in-out infinite;
+    }
+
+    /* ─── CONTACT ────────────────────────────────── */
+    .contact { background: var(--bg); }
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 7rem;
+      align-items: start;
+    }
+    .contact-left h2 {
+      font-family: var(--display);
+      font-size: clamp(2.5rem, 5vw, 4.5rem);
+      line-height: 0.92;
+      letter-spacing: 0.04em;
+      color: var(--white);
+      margin-bottom: 1.5rem;
+    }
+    .contact-left h2 em { color: var(--gold); font-style: normal; }
+    .contact-left p {
+      font-size: 0.97rem;
+      font-weight: 300;
+      color: var(--text);
+      line-height: 1.8;
+      margin-bottom: 2.5rem;
+    }
+    .contact-items { display: flex; flex-direction: column; gap: 0.8rem; }
+    .contact-item {
+      display: flex; align-items: center; gap: 1.2rem;
+      text-decoration: none;
+      padding: 1.1rem 1.4rem;
+      border: 1px solid var(--border);
+      transition: border-color 0.25s, background 0.25s;
+    }
+    .contact-item:hover { border-color: var(--border-hover); background: var(--surface); }
+    .ci-label {
+      font-family: var(--mono);
+      font-size: 0.55rem;
+      letter-spacing: 0.18em;
+      color: var(--gold);
+      min-width: 80px;
+      text-transform: uppercase;
+    }
+    .ci-value {
+      font-size: 0.92rem;
+      color: var(--text);
+    }
+    .ci-arr { margin-left: auto; color: var(--muted); font-size: 1rem; transition: transform 0.25s, color 0.25s; }
+    .contact-item:hover .ci-arr { transform: translateX(4px); color: var(--gold); }
+
+    .contact-form { display: flex; flex-direction: column; gap: 0; }
+    .form-group { position: relative; margin-bottom: 2rem; }
+    .form-group input,
+    .form-group textarea,
+    .form-group select {
+      width: 100%;
+      background: transparent;
+      border: none;
+      border-bottom: 1px solid var(--border);
+      padding: 0.9rem 0;
+      color: var(--white);
+      font-family: var(--sans);
+      font-size: 0.95rem;
+      font-weight: 300;
+      outline: none;
+      transition: border-color 0.25s;
+      appearance: none;
+    }
+    .form-group textarea { resize: none; min-height: 110px; }
+    .form-group input::placeholder,
+    .form-group textarea::placeholder { color: var(--muted); font-size: 0.95rem; }
+    .form-group input:focus,
+    .form-group textarea:focus { border-color: var(--gold); }
+    .form-submit {
+      margin-top: 0.5rem;
+      display: inline-flex; align-items: center; gap: 0.8rem;
+      padding: 0.9rem 2.2rem;
+      background: var(--gold);
+      color: var(--bg);
+      font-family: var(--mono);
+      font-size: 0.62rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      font-weight: 700;
+      border: none;
+      cursor: pointer;
+      align-self: flex-start;
+      transition: background 0.25s;
+    }
+    .form-submit:hover { background: var(--gold-light); }
+
+    /* ─── FOOTER ─────────────────────────────────── */
+    footer {
+      background: var(--surface);
+      border-top: 1px solid var(--border);
+      padding: 2.5rem 0;
+    }
+    .footer-inner {
+      display: flex; justify-content: space-between; align-items: center;
+    }
+    .footer-brand {
+      font-family: var(--display);
+      font-size: 1.2rem;
+      letter-spacing: 0.15em;
+      color: var(--white);
+    }
+    .footer-brand span { color: var(--gold); }
+    .footer-copy {
+      font-family: var(--mono);
+      font-size: 0.58rem;
+      letter-spacing: 0.12em;
+      color: var(--muted);
+    }
+    .footer-links { display: flex; gap: 2rem; }
+    .footer-links a {
+      font-family: var(--mono);
+      font-size: 0.58rem;
+      letter-spacing: 0.15em;
+      color: var(--muted);
+      text-decoration: none;
+      transition: color 0.25s;
+    }
+    .footer-links a:hover { color: var(--white); }
+
+    /* ─── REVEAL ─────────────────────────────────── */
+    .reveal {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.7s, transform 0.7s;
+    }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+
+    /* ─── ANIMATIONS ─────────────────────────────── */
+    @keyframes fadeIn { from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)} }
+    @keyframes ticker { from{transform:translateX(0)}to{transform:translateX(-50%)} }
+    @keyframes wave { 0%,100%{transform:scaleY(1)}50%{transform:scaleY(0.3)} }
+    @keyframes pulse { 0%,100%{opacity:1}50%{opacity:0.25} }
+
+    /* ─── RESPONSIVE HINTS ───────────────────────── */
+    @media (max-width: 960px) {
+      nav { padding: 1.1rem 2rem; }
+      nav ul { display: none; }
+      .hero { grid-template-columns: 1fr; padding: 7rem 2rem 4rem; }
+      .hero-right { display: none; }
+      .container { padding: 0 2rem; }
+      .about-grid, .contact-grid { grid-template-columns: 1fr; gap: 3rem; }
+      .about-img { display: none; }
+      .mixes-grid { grid-template-columns: 1fr; }
+      .services-grid { grid-template-columns: 1fr; }
+      .slide { grid-template-columns: 1fr; }
+      .player { padding: 1rem 1.5rem; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- PLAYER -->
+<div class="player" id="player">
+  <div class="p-wave paused" id="pWave">
+    <span></span><span></span><span></span><span></span>
+  </div>
+  <div class="p-info">
+    <div class="p-label">NOW PLAYING</div>
+    <div class="p-title" id="pTitle">—</div>
+  </div>
+  <button class="p-btn" id="pPlayBtn">
+    <svg id="pIco" viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg>
+  </button>
+  <div class="p-bar-wrap">
+    <span class="p-time" id="pCur">0:00</span>
+    <div class="p-bar" id="pBar"><div class="p-fill" id="pFill"></div></div>
+    <span class="p-time" id="pDur">0:00</span>
+  </div>
+  <div class="p-vol">
+    <svg viewBox="0 0 24 24" fill="none" stroke="#6b6762" stroke-width="2">
+      <path d="M11 5L6 9H2v6h4l5 4V5z"/>
+      <path d="M19.07 4.93a10 10 0 010 14.14M15.54 8.46a5 5 0 010 7.07"/>
+    </svg>
+    <input type="range" id="pVol" min="0" max="1" step="0.05" value="0.8">
+  </div>
+  <button class="p-close" id="pClose">TUTUP</button>
+</div>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-brand">THE<span>DPR</span></div>
+  <ul>
+    <li><a href="#about">Tentang</a></li>
+    <li><a href="#mixes">Mix</a></li>
+    <li><a href="#services">Layanan</a></li>
+    <li><a href="#gallery">Galeri</a></li>
+    <li><a href="#contact" class="nav-cta">Book Now</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="home">
+  <div class="hero-left">
+    <div class="hero-eyebrow">
+      <span class="label">DJ & Music Producer</span>
+    </div>
+    <h1>THE<br><span class="stroke">DPR</span></h1>
+    <p class="hero-desc">DJ dan music producer profesional berbasis di Indonesia. Menghadirkan energi autentik ke setiap panggung — dari club night hingga festival, dengan mixing yang presisi dan flow yang konsisten.</p>
+    <div class="hero-actions">
+      <a href="#contact" class="btn btn-gold">Book Now</a>
+      <a href="#mixes" class="btn btn-outline">Dengar Mix</a>
+    </div>
+  </div>
+  <div class="hero-right">
+    <div class="hero-img-wrap">
+      <img src="Image DJ/foto dj new.jpg" alt="THE DPR"
+           onerror="this.style.background='linear-gradient(160deg,#1a1a1a,#0d0d0d)';this.removeAttribute('src');">
+      <div class="hero-img-overlay"></div>
+      <div class="hero-img-tag">
+        <span class="t1">THE DPR</span>
+        <span class="t2">Electronic Music Artist</span>
+      </div>
+    </div>
+    <div class="hero-stats">
+      <div class="hero-stat-item"><div class="hero-stat-num">5+</div><div class="hero-stat-lbl">Tahun</div></div>
+      <div class="hero-stat-item"><div class="hero-stat-num">100+</div><div class="hero-stat-lbl">Event</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- TICKER -->
+<div class="ticker">
+  <div class="ticker-track">
+    <span class="ticker-item">BKB Full Set <span>·</span></span>
+    <span class="ticker-item">The DPR <span>·</span></span>
+    <span class="ticker-item">Disco Special <span>·</span></span>
+    <span class="ticker-item">Live Indobounce <span>·</span></span>
+    <span class="ticker-item">BKB Suka Suka <span>·</span></span>
+    <span class="ticker-item">The VVIP <span>·</span></span>
+    <span class="ticker-item">BKB Full Set <span>·</span></span>
+    <span class="ticker-item">The DPR <span>·</span></span>
+    <span class="ticker-item">Disco Special <span>·</span></span>
+    <span class="ticker-item">Live Indobounce <span>·</span></span>
+    <span class="ticker-item">BKB Suka Suka <span>·</span></span>
+    <span class="ticker-item">The VVIP <span>·</span></span>
+  </div>
+</div>
+
+<!-- ABOUT -->
+<section class="about section-pad" id="about">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="section-num">01</span>
+      <h2 class="section-title">Tentang</h2>
+      <div class="section-rule"></div>
+    </div>
+    <div class="about-grid">
+      <div class="about-img reveal">
+        <img src="Image DJ/foto dj new.jpg" alt="THE DPR"
+             onerror="this.style.background='linear-gradient(160deg,#1a1a1a,#0d0d0d)';this.removeAttribute('src');">
+        <div class="about-img-border"></div>
+        <div class="about-img-accent">THE DPR</div>
+      </div>
+      <div class="about-content reveal">
+        <h3>DJ & Electronic Music Producer</h3>
+        <p>THE DPR adalah nama di balik puluhan penampilan live di kancah musik elektronik Indonesia. Dengan lebih dari 5 tahun aktif di industri, THE DPR dikenal karena kemampuannya membaca crowd dan membangun energi set dari nol hingga puncak.</p>
+        <p>Berakar di genre house, disco, dan dancehall, setiap set dirancang dengan niat — bukan sekadar memutar lagu, tapi membangun pengalaman sonik yang konsisten dan berkesan bagi semua yang hadir.</p>
+        <p>Selain tampil live, THE DPR aktif berkolaborasi dengan DJ lain dan menghasilkan mix rekaman yang tersebar di berbagai platform digital.</p>
+        <div class="about-tags">
+          <span class="tag">House</span>
+          <span class="tag">Disco</span>
+          <span class="tag">Dancehall</span>
+          <span class="tag">Electronic</span>
+          <span class="tag">Live Mix</span>
+        </div>
+        <div class="about-stats">
+          <div class="about-stat"><div class="stat-n">5+</div><div class="stat-l">Tahun Aktif</div></div>
+          <div class="about-stat"><div class="stat-n">100+</div><div class="stat-l">Total Event</div></div>
+          <div class="about-stat"><div class="stat-n">6</div><div class="stat-l">Mix Rekaman</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MIXES -->
+<section class="mixes section-pad" id="mixes">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="section-num">02</span>
+      <h2 class="section-title">Featured Mixes</h2>
+      <div class="section-rule"></div>
+    </div>
+    <div class="mixes-grid reveal">
+      <div class="mix-card" data-src="mp3 sample/BKB Full Set Terbang Tinggi - THE DPR.mp3" data-title="BKB Full Set Terbang Tinggi — THE DPR">
+        <div class="mix-card-top">
+          <span class="mix-n">001</span>
+          <div class="mix-play-btn"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg></div>
+        </div>
+        <div class="mix-title">BKB Full Set Terbang Tinggi</div>
+        <div class="mix-meta">THE DPR · Full Set</div>
+        <span class="mix-genre">House / Dance</span>
+      </div>
+      <div class="mix-card" data-src="mp3 sample/BKB SPECIAL - DJ LOKA feat. The DPR.mp3" data-title="BKB Special — DJ LOKA feat. The DPR">
+        <div class="mix-card-top">
+          <span class="mix-n">002</span>
+          <div class="mix-play-btn"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg></div>
+        </div>
+        <div class="mix-title">BKB Special</div>
+        <div class="mix-meta">DJ LOKA feat. The DPR · Collab</div>
+        <span class="mix-genre">Special Set</span>
+      </div>
+      <div class="mix-card" data-src="mp3 sample/BKB SUKA SUKA.mp3" data-title="BKB Suka Suka — THE DPR">
+        <div class="mix-card-top">
+          <span class="mix-n">003</span>
+          <div class="mix-play-btn"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg></div>
+        </div>
+        <div class="mix-title">BKB Suka Suka</div>
+        <div class="mix-meta">THE DPR · Solo Set</div>
+        <span class="mix-genre">Dancehall</span>
+      </div>
+      <div class="mix-card" data-src="mp3 sample/BKB THE VVIP THE DPR.mp3" data-title="BKB The VVIP — THE DPR">
+        <div class="mix-card-top">
+          <span class="mix-n">004</span>
+          <div class="mix-play-btn"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg></div>
+        </div>
+        <div class="mix-title">BKB The VVIP</div>
+        <div class="mix-meta">THE DPR · VIP Edition</div>
+        <span class="mix-genre">Electronic</span>
+      </div>
+      <div class="mix-card" data-src="mp3 sample/DISCO SPECIAL GUEST - DJ LOKA NANTA fe.mp3" data-title="Disco Special Guest — DJ LOKA NANTA">
+        <div class="mix-card-top">
+          <span class="mix-n">005</span>
+          <div class="mix-play-btn"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg></div>
+        </div>
+        <div class="mix-title">Disco Special Guest</div>
+        <div class="mix-meta">DJ LOKA NANTA · Special</div>
+        <span class="mix-genre">Disco / Funk</span>
+      </div>
+      <div class="mix-card" data-src="mp3 sample/Live Set Indobounce - DJ LOKA NANTA.mp3" data-title="Live Set Indobounce — DJ LOKA NANTA">
+        <div class="mix-card-top">
+          <span class="mix-n">006</span>
+          <div class="mix-play-btn"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg></div>
+        </div>
+        <div class="mix-title">Live Set Indobounce</div>
+        <div class="mix-meta">DJ LOKA NANTA · Live Recording</div>
+        <span class="mix-genre">Live / Bounce</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section class="services section-pad" id="services">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="section-num">03</span>
+      <h2 class="section-title">Layanan</h2>
+      <div class="section-rule"></div>
+    </div>
+    <div class="services-grid reveal">
+      <div class="service-card">
+        <div class="service-num">01</div>
+        <div class="service-name">Club Night</div>
+        <p class="service-desc">Penampilan live untuk venue club dan lounge. Set disesuaikan dengan karakter venue — dari warm-up hingga peak hour — untuk membangun energi dancefloor yang konsisten sepanjang malam.</p>
+        <div class="service-includes">
+          <span class="tag">2–4 Jam Set</span><span class="tag">Sound Survey</span><span class="tag">Rider Tersedia</span>
+        </div>
+        <span class="service-arr">↗</span>
+      </div>
+      <div class="service-card">
+        <div class="service-num">02</div>
+        <div class="service-name">Private Event</div>
+        <p class="service-desc">Pesta ulang tahun, gathering korporat, dan acara eksklusif lainnya. Playlist dikonsultasikan terlebih dahulu agar sesuai dengan mood dan preferensi tamu undangan.</p>
+        <div class="service-includes">
+          <span class="tag">Konsultasi Playlist</span><span class="tag">Fleksibel Durasi</span>
+        </div>
+        <span class="service-arr">↗</span>
+      </div>
+      <div class="service-card">
+        <div class="service-num">03</div>
+        <div class="service-name">Wedding Party</div>
+        <p class="service-desc">Soundtrack sempurna untuk hari istimewa Anda — dari suasana cocktail hour yang intim hingga pesta dansa yang meriah. Musik disesuaikan dengan konsep pernikahan Anda.</p>
+        <div class="service-includes">
+          <span class="tag">Koordinasi Acara</span><span class="tag">Custom Playlist</span>
+        </div>
+        <span class="service-arr">↗</span>
+      </div>
+      <div class="service-card">
+        <div class="service-num">04</div>
+        <div class="service-name">Festival & Open Air</div>
+        <p class="service-desc">Set skala besar untuk festival musik dan event outdoor. Berpengalaman tampil di depan crowd ratusan hingga ribuan orang dengan energi panggung yang terjaga dari awal hingga akhir.</p>
+        <div class="service-includes">
+          <span class="tag">Technical Rider</span><span class="tag">Stage Plot</span>
+        </div>
+        <span class="service-arr">↗</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- GALLERY -->
+<section class="gallery section-pad" id="gallery">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="section-num">04</span>
+      <h2 class="section-title">Galeri Kegiatan</h2>
+      <div class="section-rule"></div>
+    </div>
+    <div class="gallery-header reveal">
+      <p>Dokumentasi penampilan dan kegiatan THE DPR. Slide berjalan otomatis setiap 5 detik, atau navigasi manual menggunakan tombol di bawah.</p>
+      <a href="https://www.instagram.com/the_dpr.official/" target="_blank" class="ig-btn">@the_dpr.official ↗</a>
+    </div>
+    <div class="slideshow-wrap reveal">
+      <div class="slide-track" id="slideTrack">
+        <div class="slide">
+          <div class="slide-visual">
+            <img src="Image DJ/foto dj new.jpg" alt="BKB Full Set" onerror="this.style.display='none';">
+            <span class="slide-icon">LIVE</span>
+          </div>
+          <div class="slide-content">
+            <div class="slide-idx">01 / 06</div>
+            <div class="slide-title">BKB Full Set Terbang Tinggi</div>
+            <p class="slide-desc">Sesi full set THE DPR yang membawa crowd dari intro ke puncak energi. Berlangsung selama lebih dari 2 jam dengan transisi yang mulus dari satu track ke track berikutnya.</p>
+            <a href="https://www.instagram.com/the_dpr.official/" target="_blank" class="slide-link">Lihat di Instagram →</a>
+          </div>
+        </div>
+        <div class="slide">
+          <div class="slide-visual">
+            <img src="Image DJ/foto dj new 2.jpg" alt="BKB Special" onerror="this.style.display='none';">
+            <span class="slide-icon">COLLAB</span>
+          </div>
+          <div class="slide-content">
+            <div class="slide-idx">02 / 06</div>
+            <div class="slide-title">BKB Special — Collab Night</div>
+            <p class="slide-desc">Kolaborasi THE DPR dan DJ LOKA dalam satu panggung. Dua gaya mixing yang berbeda bertemu dan menghasilkan satu malam yang dibicarakan lama setelah event selesai.</p>
+            <a href="https://www.instagram.com/the_dpr.official/" target="_blank" class="slide-link">Lihat di Instagram →</a>
+          </div>
+        </div>
+        <div class="slide">
+          <div class="slide-visual"><span class="slide-icon">DISCO</span></div>
+          <div class="slide-content">
+            <div class="slide-idx">03 / 06</div>
+            <div class="slide-title">Disco Special Guest Night</div>
+            <p class="slide-desc">Malam disco dengan sentuhan kontemporer. THE DPR menjadi host sekaligus resident untuk malam khusus yang menghadirkan tamu artis dan crowd yang antusias dari awal hingga akhir.</p>
+            <a href="https://www.instagram.com/the_dpr.official/" target="_blank" class="slide-link">Lihat di Instagram →</a>
+          </div>
+        </div>
+        <div class="slide">
+          <div class="slide-visual"><span class="slide-icon">VVIP</span></div>
+          <div class="slide-content">
+            <div class="slide-idx">04 / 06</div>
+            <div class="slide-title">BKB The VVIP Edition</div>
+            <p class="slide-desc">Set eksklusif untuk tamu VVIP di area premium venue. Suasana lebih intimate dengan pilihan track yang lebih selektif dan pendekatan mixing yang berbeda dari set reguler.</p>
+            <a href="https://www.instagram.com/the_dpr.official/" target="_blank" class="slide-link">Lihat di Instagram →</a>
+          </div>
+        </div>
+        <div class="slide">
+          <div class="slide-visual"><span class="slide-icon">BOUNCE</span></div>
+          <div class="slide-content">
+            <div class="slide-idx">05 / 06</div>
+            <div class="slide-title">Live Set Indobounce</div>
+            <p class="slide-desc">Rekaman langsung dari dancefloor — energi yang terasa nyata tanpa editing berlebih. THE DPR memimpin set dari booth dengan presisi penuh selama hampir dua jam tanpa jeda.</p>
+            <a href="https://www.instagram.com/the_dpr.official/" target="_blank" class="slide-link">Lihat di Instagram →</a>
+          </div>
+        </div>
+        <div class="slide">
+          <div class="slide-visual" style="background: var(--surface-2);">
+            <div style="text-align:center;padding:2rem;">
+              <div style="font-family:var(--display);font-size:2.5rem;color:var(--gold);letter-spacing:0.12em;">@the_dpr.official</div>
+              <div style="font-family:var(--mono);font-size:0.58rem;letter-spacing:0.18em;color:var(--muted);margin-top:0.6rem;">INSTAGRAM</div>
+            </div>
+          </div>
+          <div class="slide-content" style="justify-content:center;align-items:flex-start;">
+            <div class="slide-idx">06 / 06</div>
+            <div class="slide-title">Dokumentasi Lengkap</div>
+            <p class="slide-desc">Foto, video, reels, dan behind the scene tersedia lengkap di Instagram. Follow untuk mendapatkan update setiap penampilan dan event terbaru THE DPR.</p>
+            <a href="https://www.instagram.com/the_dpr.official/" target="_blank" class="btn btn-gold" style="margin-top:1.5rem;text-decoration:none;">Buka Instagram</a>
+          </div>
+        </div>
+      </div>
+      <div class="slide-controls">
+        <div class="auto-indicator"><div class="auto-dot"></div><span>AUTO</span></div>
+        <div class="slide-dots" id="slideDots">
+          <div class="slide-dot active" data-i="0"></div>
+          <div class="slide-dot" data-i="1"></div>
+          <div class="slide-dot" data-i="2"></div>
+          <div class="slide-dot" data-i="3"></div>
+          <div class="slide-dot" data-i="4"></div>
+          <div class="slide-dot" data-i="5"></div>
+        </div>
+        <div class="slide-nav">
+          <button class="slide-btn" id="slidePrev">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15,18 9,12 15,6"/></svg>
+          </button>
+          <button class="slide-btn" id="slideNext">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9,18 15,12 9,6"/></svg>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact section-pad" id="contact">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="section-num">05</span>
+      <h2 class="section-title">Kontak</h2>
+      <div class="section-rule"></div>
+    </div>
+    <div class="contact-grid reveal">
+      <div class="contact-left">
+        <h2>Book THE DPR<br>untuk <em>Event</em><br>Anda</h2>
+        <p>Ceritakan acara Anda dan kami akan merespons dalam 24 jam kerja. Untuk booking dadakan atau pertanyaan cepat, hubungi langsung via WhatsApp atau Instagram.</p>
+        <div class="contact-items">
+          <a href="https://www.instagram.com/the_dpr.official/" target="_blank" class="contact-item">
+            <span class="ci-label">Instagram</span>
+            <span class="ci-value">@the_dpr.official</span>
+            <span class="ci-arr">↗</span>
+          </a>
+          <a href="#" class="contact-item">
+            <span class="ci-label">WhatsApp</span>
+            <span class="ci-value">+62 xxx xxxx xxxx</span>
+            <span class="ci-arr">↗</span>
+          </a>
+          <a href="#" class="contact-item">
+            <span class="ci-label">Email</span>
+            <span class="ci-value">booking@thedpr.id</span>
+            <span class="ci-arr">↗</span>
+          </a>
+        </div>
+      </div>
+      <div class="contact-form">
+        <div class="form-group">
+          <input type="text" placeholder="Nama Anda">
+        </div>
+        <div class="form-group">
+          <input type="email" placeholder="Alamat Email">
+        </div>
+        <div class="form-group">
+          <input type="text" placeholder="Jenis Event (Club Night, Wedding, Festival...)">
+        </div>
+        <div class="form-group">
+          <input type="text" placeholder="Tanggal & Lokasi Event">
+        </div>
+        <div class="form-group">
+          <textarea placeholder="Ceritakan lebih lanjut tentang acara Anda — konsep, ekspektasi, dan detail lainnya"></textarea>
+        </div>
+        <button type="submit" class="form-submit">Kirim Permintaan →</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="container">
+    <div class="footer-inner">
+      <div class="footer-brand">THE<span>DPR</span></div>
+      <div class="footer-copy">© 2024 THE DPR · All Rights Reserved</div>
+      <div class="footer-links">
+        <a href="https://www.instagram.com/the_dpr.official/" target="_blank">Instagram</a>
+        <a href="#">SoundCloud</a>
+        <a href="#">YouTube</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+// ─── SCROLL REVEAL ─────────────────────────────────────
+var revObs = new IntersectionObserver(function(entries) {
+  entries.forEach(function(e) {
+    if (e.isIntersecting) e.target.classList.add('visible');
+  });
+}, { threshold: 0.1 });
+document.querySelectorAll('.reveal').forEach(function(el) { revObs.observe(el); });
+
+// ─── AUDIO PLAYER ──────────────────────────────────────
+var audio = new Audio();
+audio.volume = 0.8;
+var activeCard = null;
+
+var player   = document.getElementById('player');
+var pTitle   = document.getElementById('pTitle');
+var pPlayBtn = document.getElementById('pPlayBtn');
+var pIco     = document.getElementById('pIco');
+var pFill    = document.getElementById('pFill');
+var pCur     = document.getElementById('pCur');
+var pDur     = document.getElementById('pDur');
+var pVol     = document.getElementById('pVol');
+var pWave    = document.getElementById('pWave');
+var pBar     = document.getElementById('pBar');
+
+function fmt(s) {
+  if (isNaN(s)) return '0:00';
+  return Math.floor(s/60) + ':' + ('0'+Math.floor(s%60)).slice(-2);
+}
+function setPlay(p) {
+  pIco.innerHTML = p
+    ? '<rect x="6" y="4" width="4" height="16"/><rect x="14" y="4" width="4" height="16"/>'
+    : '<polygon points="5,3 19,12 5,21"/>';
+  pWave.classList.toggle('paused', !p);
+}
+
+function load(card) {
+  if (activeCard) activeCard.classList.remove('playing');
+  activeCard = card;
+  card.classList.add('playing');
+  pTitle.textContent = card.getAttribute('data-title');
+  player.classList.add('show');
+  audio.src = card.getAttribute('data-src');
+  audio.load();
+  audio.play().then(function() { setPlay(true); }).catch(function(e) {
+    console.log('Audio:', e); setPlay(false);
+  });
+}
+
+document.querySelectorAll('.mix-card').forEach(function(card) {
+  card.addEventListener('click', function() {
+    if (activeCard === card && !audio.paused) { audio.pause(); setPlay(false); }
+    else if (activeCard === card && audio.paused) { audio.play().then(function() { setPlay(true); }); }
+    else { load(card); }
+  });
+});
+
+pPlayBtn.addEventListener('click', function() {
+  if (audio.paused) { audio.play().then(function() { setPlay(true); }); }
+  else { audio.pause(); setPlay(false); }
+});
+
+audio.addEventListener('timeupdate', function() {
+  if (!audio.duration) return;
+  pFill.style.width = (audio.currentTime / audio.duration * 100) + '%';
+  pCur.textContent = fmt(audio.currentTime);
+});
+audio.addEventListener('loadedmetadata', function() { pDur.textContent = fmt(audio.duration); });
+audio.addEventListener('ended', function() {
+  setPlay(false);
+  if (activeCard) activeCard.classList.remove('playing');
+});
+pBar.addEventListener('click', function(e) {
+  if (!audio.duration) return;
+  var r = pBar.getBoundingClientRect();
+  audio.currentTime = ((e.clientX - r.left) / r.width) * audio.duration;
+});
+pVol.addEventListener('input', function() { audio.volume = parseFloat(pVol.value); });
+document.getElementById('pClose').addEventListener('click', function() {
+  audio.pause(); setPlay(false);
+  player.classList.remove('show');
+  if (activeCard) { activeCard.classList.remove('playing'); activeCard = null; }
+});
+
+// ─── SLIDESHOW ──────────────────────────────────────────
+var track  = document.getElementById('slideTrack');
+var dots   = document.querySelectorAll('.slide-dot');
+var cur    = 0;
+var total  = 6;
+var timer  = null;
+
+function goTo(i) {
+  cur = ((i % total) + total) % total;
+  track.style.transform = 'translateX(-' + (cur * 100) + '%)';
+  dots.forEach(function(d, idx) { d.classList.toggle('active', idx === cur); });
+}
+function startAuto() {
+  stopAuto();
+  timer = setInterval(function() { goTo(cur + 1); }, 5000);
+}
+function stopAuto() { if (timer) clearInterval(timer); }
+
+document.getElementById('slideNext').addEventListener('click', function() { goTo(cur + 1); startAuto(); });
+document.getElementById('slidePrev').addEventListener('click', function() { goTo(cur - 1); startAuto(); });
+dots.forEach(function(d) {
+  d.addEventListener('click', function() { goTo(parseInt(d.getAttribute('data-i'))); startAuto(); });
+});
+
+var galObs = new IntersectionObserver(function(entries) {
+  entries.forEach(function(e) { if (e.isIntersecting) startAuto(); else stopAuto(); });
+}, { threshold: 0.3 });
+galObs.observe(document.getElementById('gallery'));
+</script>
+</body>
+</html>
